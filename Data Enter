@@ -1,0 +1,84 @@
+public static void main(String[] args){
+
+    //Agent data storage
+    String[] agentNameArray = new String[100];
+    String[] agentIdArray = new String[100];
+    int agentIndex = 0; //keeps track of which agent is which
+
+    Scanner select = new Scanner(System.in);
+    Scanner againInput = new Scanner(System.in);
+    Scanner realAgainInput = new Scanner(System.in);//Go again Scanner for Agent menu selection
+    String again = "yes";
+    while (again.equalsIgnoreCase("yes")){
+        System.out.println("============Main Menu============");
+        System.out.println("=( 1 )===Real Estate Agents======");
+        System.out.println("=( 2 )==========Buyer============");
+        System.out.println("=( 3 )==========Seller===========");
+        System.out.println("=( 4 )=========Properties========");
+        System.out.println("=( 5 )========Associations=======");
+        System.out.println("(Any other number)====Exit=======");
+        System.out.println();
+        System.out.print("Which menu item do you want? ");
+        int selection = select.nextInt();
+        select.nextLine(); //AI was used on this to figure out how to clear Scanner
+        String menuSelection = switch (selection)
+        {
+            case 1 -> "Real";
+            case 2 -> "Buy";
+            case 3 -> "Sell";
+            case 4 -> "Prop";
+            case 5 -> "Ass";
+            default -> "Exit";
+        };
+
+        if (menuSelection.equalsIgnoreCase("Real")){
+            String realAgain = "yes";
+            while (realAgain.equalsIgnoreCase("yes")){
+                System.out.print("Enter Agent Name: ");
+                agentNameArray[agentIndex] = select.nextLine(); //AI used to figure out how to use/call agentIndex
+                System.out.print("Enter Agent ID: ");
+                agentIdArray[agentIndex] = select.nextLine();
+                agentIndex++;
+                System.out.print("Add another agent? ");
+                realAgain = realAgainInput.nextLine();
+            }
+        }
+        else if (menuSelection.equalsIgnoreCase("Buy")){
+
+        }
+        else if (menuSelection.equalsIgnoreCase("Sell")){
+
+        }
+        else if (menuSelection.equalsIgnoreCase("Prop")){
+
+        }
+        else if (menuSelection.equalsIgnoreCase("Ass")){
+
+        }
+        else if (menuSelection.equalsIgnoreCase("Exit"));
+            System.out.println("Bye");
+
+        System.out.print("Would you like to add more information? ");
+        again = againInput.nextLine();
+    }
+
+    try
+    {
+        File nameFile = new File("myName.txt");
+        PrintWriter fileOut = new PrintWriter(nameFile);
+
+        System.out.println("Real Estate Agents");
+        for (int i=0 ;agentIndex > i;i++)
+        {
+            fileOut.println("Agent Name: " + agentNameArray[i]);
+            fileOut.println("Agent ID: " + agentIdArray[i]);
+        }
+
+        fileOut.close();
+    }
+    catch (IOException ioex)
+    {
+        System.out.println(ioex.toString());
+    }
+
+}
