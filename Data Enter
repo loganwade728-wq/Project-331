@@ -1,14 +1,40 @@
+import java.util.*;
+import java.io.*;
 
-
-public static void main(String[] args){
+public class GroupProjectPart2 {
+    public static void main(String[] args){
 
     //Agent data storage
     String[] agentNameArray = new String[20];
     String[] agentIdArray = new String[20];
     String[] agentEmail = new String[20];
-    String[] agentPhone = new String[20]
+    String[] agentPhone = new String[20];
     int agentIndex = 0; //keeps track of which agent is which
 
+    //Buyer data storage
+    String[] buyerId = new String[30];
+    String[] buyerNameArray = new String[30];
+    String[] buyerPhone = new String[30];
+    String[] buyerEmail = new String[30];
+    int[] buyerView = new int[30];
+    int buyerIndex = 0;//keep track of which buyer is which
+    
+    //Seller data storage
+    String[] sellerId = new String[30];
+    String[] sellerName =  new String[30];
+    String[] sellerPhone = new String[30];
+    String[] sellerEmail = new String[30];
+    int sellerIndex = 0;
+            
+    //Property data storage
+    String[] propAdd = new String[30];
+    String[] propPrice = new String[30];
+    int propIndex = 0;
+     
+    //Association data storage
+    
+            
+            
     Scanner select = new Scanner(System.in);
     Scanner againInput = new Scanner(System.in);
     Scanner realAgainInput = new Scanner(System.in);//Go again Scanner for Agent menu selection
@@ -38,27 +64,81 @@ public static void main(String[] args){
         if (menuSelection.equalsIgnoreCase("Real")){
             String realAgain = "yes";
             while (realAgain.equalsIgnoreCase("yes")){
-                System.out.print("Enter Agent First and Last Name: ");
+                System.out.print("Enter Agent Name: ");
                 agentNameArray[agentIndex] = select.nextLine(); //AI used to figure out how to use/call agentIndex
                 System.out.print("Enter Agent ID: ");
                 agentIdArray[agentIndex] = select.nextLine();
                 System.out.print("Enter Agent Email: ");
                 agentEmail[agentIndex] = select.nextLine();
                 System.out.print("Enter Agent Phone Number: ");
-                agentPhone[agentIndex] = select.nextline();
+                agentPhone[agentIndex] = select.nextLine();
 
                 agentIndex++; //Once all current Agent names are in, it goes to the next index in the array
-                System.out.print("Add another agent? (yes or no ");
+                System.out.print("Add another agent? (yes or no) ");
                 realAgain = realAgainInput.nextLine();
             }
         }
         else if (menuSelection.equalsIgnoreCase("Buy")){
+            
+            String buyAgain = "yes";
+                while (buyAgain.equalsIgnoreCase ("yes")){
+                    System.out.print("Enter Buyer Id");
+                    buyerId[buyerIndex] = select.nextLine();
+                    System.out.print("Enter Buyer Name");
+                    buyerNameArray[buyerIndex] = select.nextLine();
+                    System.out.print("Enter Buyer Phone Number: ");
+                    buyerPhone[buyerIndex] = select.nextLine();
+                    System.out.print("Enter Buyer Buyer Email: ");
+                    buyerEmail[buyerIndex] = select.nextLine();
+                    System.out.print("Which Proprty(s) Did They View: ");
+                        for (int i=0 ;propIndex > i;i++)
+                            System.out.println(propAdd[i]);
+                    buyerView[buyerIndex] = select.nextInt();
+                    
+                buyerIndex++; //Once all current Agent names are in, it goes to the next index in the array
+                System.out.print("Add another agent? (yes or no) ");
+                buyAgain = realAgainInput.nextLine();
+                }
 
         }
         else if (menuSelection.equalsIgnoreCase("Sell")){
+            String sellerAgain = "yes";
+            while (sellerAgain.equalsIgnoreCase("yes")){
+                System.out.print("Enter Seller ID");
+                sellerId[sellerIndex] = select.nextLine();
+                System.out.print("Enter Seller Name: ");
+                sellerName[sellerIndex] = select.nextLine();
+
+                System.out.print("Enter Seller ID: ");
+                sellerId[sellerIndex] = select.nextLine();
+
+                System.out.print("Enter Seller Email: ");
+                sellerEmail[sellerIndex] = select.nextLine();
+
+                System.out.print("Enter Seller Phone Number: ");
+                sellerPhone[sellerIndex] = select.nextLine();
+
+                sellerIndex++;
+
+                System.out.print("Add another seller? (yes or no) ");
+                sellerAgain = select.nextLine();
+}
 
         }
         else if (menuSelection.equalsIgnoreCase("Prop")){
+            String propAgain = "yes";
+            while (propAgain.equalsIgnoreCase("yes")){
+                System.out.print("Enter Property Address: ");
+                propAdd[propIndex] = select.nextLine();
+
+                System.out.print("Enter Property Price: ");
+                propPrice[propIndex] = select.nextLine();
+
+                propIndex++;
+
+                System.out.print("Add another property? (yes or no) ");
+                propAgain = select.nextLine();
+}
 
         }
         else if (menuSelection.equalsIgnoreCase("Ass")){
@@ -76,13 +156,25 @@ public static void main(String[] args){
         File nameFile = new File("myName.txt");
         PrintWriter fileOut = new PrintWriter(nameFile);
 
-        System.out.println("Real Estate Agents");
         for (int i=0 ;agentIndex > i;i++)
         {
+            fileOut.println("===========Agent Table===========");
             fileOut.println("Agent Name: " + agentNameArray[i]);
             fileOut.println("Agent ID: " + agentIdArray[i]);
+            fileOut.println("Agent Email: " + agentIdArray[i]);
+            fileOut.println("Agent Phone: " + agentIdArray[i]);
         }
-
+        
+        for (int i=0 ; propIndex > i;i++)
+        {
+            fileOut.println("===========Buyer Table===========");
+            fileOut.println("Buyer Name: " + buyerNameArray[i]);
+            fileOut.println("Buyer ID: " + buyerId[i]);
+            fileOut.println("Buyer Email: " + buyerEmail[i]);
+            fileOut.println("Buyer Phone: " + buyerPhone[i]);
+            fileOut.println("Properties Visited By Buyer: " + buyerView[i]);
+        }
+        
         fileOut.close();
     }
     catch (IOException ioex)
@@ -90,4 +182,5 @@ public static void main(String[] args){
         System.out.println(ioex.toString());
     }
 
+    }
 }
