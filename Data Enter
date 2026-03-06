@@ -1,8 +1,12 @@
+
+
 public static void main(String[] args){
 
     //Agent data storage
-    String[] agentNameArray = new String[100];
-    String[] agentIdArray = new String[100];
+    String[] agentNameArray = new String[20];
+    String[] agentIdArray = new String[20];
+    String[] agentEmail = new String[20];
+    String[] agentPhone = new String[20]
     int agentIndex = 0; //keeps track of which agent is which
 
     Scanner select = new Scanner(System.in);
@@ -34,12 +38,17 @@ public static void main(String[] args){
         if (menuSelection.equalsIgnoreCase("Real")){
             String realAgain = "yes";
             while (realAgain.equalsIgnoreCase("yes")){
-                System.out.print("Enter Agent Name: ");
+                System.out.print("Enter Agent First and Last Name: ");
                 agentNameArray[agentIndex] = select.nextLine(); //AI used to figure out how to use/call agentIndex
                 System.out.print("Enter Agent ID: ");
                 agentIdArray[agentIndex] = select.nextLine();
-                agentIndex++;
-                System.out.print("Add another agent? ");
+                System.out.print("Enter Agent Email: ");
+                agentEmail[agentIndex] = select.nextLine();
+                System.out.print("Enter Agent Phone Number: ");
+                agentPhone[agentIndex] = select.nextline();
+
+                agentIndex++; //Once all current Agent names are in, it goes to the next index in the array
+                System.out.print("Add another agent? (yes or no ");
                 realAgain = realAgainInput.nextLine();
             }
         }
