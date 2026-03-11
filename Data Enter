@@ -7,28 +7,29 @@ public class GroupProjectPart2 {
     //Agent data storage
     String[] agentNameArray = new String[20];
     String[] agentIdArray = new String[20];
-    String[] agentEmail = new String[20];
-    String[] agentPhone = new String[20];
+    String[] agentEmailArray = new String[20];
+    String[] agentPhoneArray = new String[20];
     int agentIndex = 0; //keeps track of which agent is which
 
     //Buyer data storage
-    String[] buyerId = new String[30];
+    String[] buyerIdArray = new String[30];
     String[] buyerNameArray = new String[30];
-    String[] buyerPhone = new String[30];
-    String[] buyerEmail = new String[30];
-    int[] buyerView = new int[30];
+    String[] buyerPhoneArray = new String[30];
+    String[] buyerEmailArray = new String[30];
+    int[][] buyerView = new int[30][10];
     int buyerIndex = 0;//keep track of which buyer is which
     
     //Seller data storage
-    String[] sellerId = new String[30];
-    String[] sellerName =  new String[30];
-    String[] sellerPhone = new String[30];
-    String[] sellerEmail = new String[30];
+    String[] sellerIdArray = new String[30];
+    String[] sellerNameArray =  new String[30];
+    String[] sellerPhoneArray = new String[30];
+    String[] sellerEmailArray = new String[30];
     int sellerIndex = 0;
             
     //Property data storage
-    String[] propAdd = new String[30];
-    String[] propPrice = new String[30];
+    String[] propAddArray = new String[30];
+    Double [] propPriceArray = new Double[30];
+    String[] propZipArrayArray = new String[30];
     int propIndex = 0;
      
     //Association data storage
@@ -46,6 +47,7 @@ public class GroupProjectPart2 {
         System.out.println("=( 3 )==========Seller===========");
         System.out.println("=( 4 )=========Properties========");
         System.out.println("=( 5 )========Associations=======");
+        System.out.println("=( 6 )=========Edit Entry========");
         System.out.println("(Any other number)====Exit=======");
         System.out.println();
         System.out.print("Which menu item do you want? ");
@@ -58,6 +60,7 @@ public class GroupProjectPart2 {
             case 3 -> "Sell";
             case 4 -> "Prop";
             case 5 -> "Ass";
+            case 6 -> "Edit";
             default -> "Exit";
         };
 
@@ -69,9 +72,9 @@ public class GroupProjectPart2 {
                 System.out.print("Enter Agent ID: ");
                 agentIdArray[agentIndex] = select.nextLine();
                 System.out.print("Enter Agent Email: ");
-                agentEmail[agentIndex] = select.nextLine();
+                agentEmailArray[agentIndex] = select.nextLine();
                 System.out.print("Enter Agent Phone Number: ");
-                agentPhone[agentIndex] = select.nextLine();
+                agentPhoneArray[agentIndex] = select.nextLine();
 
                 agentIndex++; //Once all current Agent names are in, it goes to the next index in the array
                 System.out.print("Add another agent? (yes or no) ");
@@ -83,17 +86,17 @@ public class GroupProjectPart2 {
             String buyAgain = "yes";
                 while (buyAgain.equalsIgnoreCase ("yes")){
                     System.out.print("Enter Buyer Id");
-                    buyerId[buyerIndex] = select.nextLine();
+                    buyerIdArray[buyerIndex] = select.nextLine();
                     System.out.print("Enter Buyer Name");
                     buyerNameArray[buyerIndex] = select.nextLine();
                     System.out.print("Enter Buyer Phone Number: ");
-                    buyerPhone[buyerIndex] = select.nextLine();
+                    buyerPhoneArray[buyerIndex] = select.nextLine();
                     System.out.print("Enter Buyer Buyer Email: ");
-                    buyerEmail[buyerIndex] = select.nextLine();
+                    buyerEmailArray[buyerIndex] = select.nextLine();
                     System.out.print("Which Proprty(s) Did They View: ");
                         for (int i=0 ;propIndex > i;i++)
-                            System.out.println(propAdd[i]);
-                    buyerView[buyerIndex] = select.nextInt();
+                            System.out.println(propAddArray[i]);
+                    //buyerView[buyerIndex] = select.nextInt();
                     
                 buyerIndex++; //Once all current Agent names are in, it goes to the next index in the array
                 System.out.print("Add another agent? (yes or no) ");
@@ -105,18 +108,18 @@ public class GroupProjectPart2 {
             String sellerAgain = "yes";
             while (sellerAgain.equalsIgnoreCase("yes")){
                 System.out.print("Enter Seller ID");
-                sellerId[sellerIndex] = select.nextLine();
+                sellerIdArray[sellerIndex] = select.nextLine();
                 System.out.print("Enter Seller Name: ");
-                sellerName[sellerIndex] = select.nextLine();
+                sellerNameArray[sellerIndex] = select.nextLine();
 
                 System.out.print("Enter Seller ID: ");
-                sellerId[sellerIndex] = select.nextLine();
+                sellerIdArray[sellerIndex] = select.nextLine();
 
                 System.out.print("Enter Seller Email: ");
-                sellerEmail[sellerIndex] = select.nextLine();
+                sellerEmailArray[sellerIndex] = select.nextLine();
 
                 System.out.print("Enter Seller Phone Number: ");
-                sellerPhone[sellerIndex] = select.nextLine();
+                sellerPhoneArray[sellerIndex] = select.nextLine();
 
                 sellerIndex++;
 
@@ -129,10 +132,10 @@ public class GroupProjectPart2 {
             String propAgain = "yes";
             while (propAgain.equalsIgnoreCase("yes")){
                 System.out.print("Enter Property Address: ");
-                propAdd[propIndex] = select.nextLine();
+                propAddArray[propIndex] = select.nextLine();
 
                 System.out.print("Enter Property Price: ");
-                propPrice[propIndex] = select.nextLine();
+                propPriceArray[propIndex] = select.nextDouble();
 
                 propIndex++;
 
@@ -144,35 +147,230 @@ public class GroupProjectPart2 {
         else if (menuSelection.equalsIgnoreCase("Ass")){
 
         }
-        else if (menuSelection.equalsIgnoreCase("Exit"));
-            System.out.println("Bye");
-
-        System.out.print("Would you like to add more information? ");
+        
+        else if (menuSelection.equalsIgnoreCase("Edit"))
+        {
+            System.out.println("============Edit Menu============");
+            System.out.println("=( 1 )===Real Estate Agents======");
+            System.out.println("=( 2 )==========Buyer============");
+            System.out.println("=( 3 )==========Seller===========");
+            System.out.println("=( 4 )=========Properties========");
+            System.out.println("=( 5 )========Associations=======");
+            System.out.println("");
+            System.out.println("Which menu item do you want? ");
+            int editSelection = select.nextInt();
+            select.nextLine();
+            String EditMenuSelection = switch (editSelection)
+            {
+            case 1 -> "Real";
+            case 2 -> "Buy";
+            case 3 -> "Sell";
+            case 4 -> "Prop";
+            case 5 -> "Ass";
+            default -> "Exit";
+            };
+            
+                if (EditMenuSelection.equalsIgnoreCase("Real"))
+                {
+                System.out.println("What would you like to edit?");
+                System.out.println("");
+                System.out.println("=( 1 )===Name====");
+                System.out.println("=( 2 )====ID=====");
+                System.out.println("=( 3 )===Email===");
+                System.out.println("=( 4 )===Phone===");
+                
+                int agentEditSelection = select.nextInt();
+                select.nextLine();
+                String agentEditMenuSelection = switch(agentEditSelection)
+                {
+                    case 1 -> "Name";
+                    case 2 -> "ID";
+                    case 3 -> "Email";
+                    case 4 -> "Number";
+                    default -> "Nope";
+                };
+                        if(agentEditMenuSelection.equalsIgnoreCase("Name"))
+                        {
+                            System.out.println("Enter the agent ID for the agent you want to edit: ");
+                            String agentEditId = select.nextLine();
+                            for(int i = 0; i < agentIndex; i++)
+                            {
+                                if (agentIdArray[i].equalsIgnoreCase(agentEditId))
+                                {
+                               
+                                    int agentIdFoundName = i;
+                                    System.out.println("Enter new agent name: ");
+                                    agentNameArray[agentIdFoundName] = select.nextLine();
+                                    break;  
+                                }
+                            }
+                        }
+                        
+                        if (agentEditMenuSelection.equalsIgnoreCase("ID"))
+                        {
+                           System.out.println("Enter the agent ID for the agent you want to edit: ");
+                            String agentEditId = select.nextLine();
+                            for(int i = 0; i < agentIndex; i++)
+                            {
+                                if (agentIdArray[i].equalsIgnoreCase(agentEditId))
+                                {
+                               
+                                    int agentIdFoundName = i;
+                                    System.out.println("Enter new agent ID: ");
+                                    agentIdArray[agentIdFoundName] = select.nextLine();
+                                    break;  
+                                }
+                            }
+                        }
+                        
+                        if (agentEditMenuSelection.equalsIgnoreCase("Email"))
+                        {
+                            System.out.println("Enter the agent ID for the agent you want to edit: ");
+                            String agentEditId = select.nextLine();
+                            for(int i = 0; i < agentIndex; i++)
+                            {
+                                if (agentIdArray[i].equalsIgnoreCase(agentEditId))
+                                {
+                               
+                                    int agentIdFoundName = i;
+                                    System.out.println("Enter new agent Email: ");
+                                    agentEmailArray[agentIdFoundName] = select.nextLine();
+                                    break;  
+                                }
+                            }
+                        }
+                        
+                        if (agentEditMenuSelection.equalsIgnoreCase("Number"))
+                        {
+                            System.out.println("Enter the agent ID for the agent you want to edit: ");
+                            String agentEditId = select.nextLine();
+                            for(int i = 0; i < agentIndex; i++)
+                            {
+                                if (agentIdArray[i].equalsIgnoreCase(agentEditId))
+                                {
+                               
+                                    int agentIdFoundName = i;
+                                    System.out.println("Enter new agent Phone Number: ");
+                                    agentPhoneArray[agentIdFoundName] = select.nextLine();
+                                    break;  
+                                }
+                            }
+                        }
+                        
+                        if (agentEditMenuSelection.equalsIgnoreCase("Nope"))
+                            System.out.println("Not an option, try again");
+                      
+                }    
+        }
+            
+           
+        else if (menuSelection.equalsIgnoreCase("Exit"))
+        {
+        
+        System.out.print("Would you like to add more information? (yes/no) ");
+        System.out.print("If no, all information will be displayed in text files");
         again = againInput.nextLine();
+        }
+
+        
+        
+        
+     // LOAD DATA
+        // Load Agents
+        try {
+        Scanner fileIn = new Scanner(new File("Agent.txt"));
+        agentIndex = 0; // reset so IDs stay consistent
+    fileIn.nextLine(); // skip "===========Agent Table==========="
+
+    while (fileIn.hasNextLine()) {
+        String line = fileIn.nextLine();
+
+        if (line.startsWith("===========Agent")) {
+            agentNameArray[agentIndex] = fileIn.nextLine().replace("Agent Name: ", "");
+            agentIdArray[agentIndex] = fileIn.nextLine().replace("Agent ID: ", "");
+            agentEmailArray[agentIndex] = fileIn.nextLine().replace("Agent Email: ", "");
+            agentPhoneArray[agentIndex] = fileIn.nextLine().replace("Agent Phone: ", "");
+            agentIndex++;
+        }
     }
 
+    fileIn.close();
+}
+catch (FileNotFoundException e) {
+    System.out.println("Agent.txt not found - skipping agent load.");
+}
+        
+        // Load Buyers
+        try {
+            Scanner fileIn = new Scanner(new File("buyers.txt"));
+            int count = Integer.parseInt(fileIn.nextLine().trim());
+            buyerIndex = 0;
+            for (int i = 0; i < count; i++) {
+                buyerIdArray[i]        = fileIn.nextLine();
+                buyerNameArray[i] = fileIn.nextLine();
+                buyerPhoneArray[i]     = fileIn.nextLine();
+                buyerEmailArray[i]     = fileIn.nextLine();
+                buyerIndex++;
+            }
+            fileIn.close();
+            System.out.println("Buyers loaded from buyers.txt (" + buyerIndex + " records).");
+        } catch (FileNotFoundException e) {
+            System.out.println("buyers.txt not found - skipping buyer load.");
+        } catch (Exception e) {
+            System.out.println("Error loading buyers: " + e.getMessage());
+        }
+
+        // Load Sellers
+        try {
+            Scanner fileIn = new Scanner(new File("sellers.txt"));
+            int count = Integer.parseInt(fileIn.nextLine().trim());
+            sellerIndex = 0;
+            for (int i = 0; i < count; i++) {
+                sellerIdArray[i]    = fileIn.nextLine();
+                sellerNameArray[i]  = fileIn.nextLine();
+                sellerPhoneArray[i] = fileIn.nextLine();
+                sellerEmailArray[i] = fileIn.nextLine();
+                sellerIndex++;
+            }
+            fileIn.close();
+            System.out.println("Sellers loaded from sellers.txt (" + sellerIndex + " records).");
+        } catch (FileNotFoundException e) {
+            System.out.println("sellers.txt not found - skipping seller load.");
+        } catch (Exception e) {
+            System.out.println("Error loading sellers: " + e.getMessage());
+        }
+
+       // Load Properties
+        try {
+            Scanner fileIn = new Scanner(new File("properties.txt"));
+            int count = Integer.parseInt(fileIn.nextLine().trim());
+            propIndex = 0;
+            for (int i = 0; i < count; i++) {
+                propAddArray[i]   = fileIn.nextLine();
+                propPriceArray[i] = fileIn.nextDouble();
+                propIndex++;
+            }
+            fileIn.close();
+            System.out.println("Properties loaded from properties.txt (" + propIndex + " records).");
+        } catch (FileNotFoundException e) {
+            System.out.println("properties.txt not found - skipping property load.");
+        } catch (Exception e) {
+            System.out.println("Error loading properties: " + e.getMessage());
+        }
+    } 
+        
     try
     {
-        File nameFile = new File("myName.txt");
+        File nameFile = new File("Agent.txt");
         PrintWriter fileOut = new PrintWriter(nameFile);
-
+        fileOut.println("===========Agent Table===========");
         for (int i=0 ;agentIndex > i;i++)
         {
-            fileOut.println("===========Agent Table===========");
+            fileOut.println("===========Agent" + (i+1) +"===========");
             fileOut.println("Agent Name: " + agentNameArray[i]);
             fileOut.println("Agent ID: " + agentIdArray[i]);
-            fileOut.println("Agent Email: " + agentIdArray[i]);
-            fileOut.println("Agent Phone: " + agentIdArray[i]);
-        }
-        
-        for (int i=0 ; propIndex > i;i++)
-        {
-            fileOut.println("===========Buyer Table===========");
-            fileOut.println("Buyer Name: " + buyerNameArray[i]);
-            fileOut.println("Buyer ID: " + buyerId[i]);
-            fileOut.println("Buyer Email: " + buyerEmail[i]);
-            fileOut.println("Buyer Phone: " + buyerPhone[i]);
-            fileOut.println("Properties Visited By Buyer: " + buyerView[i]);
+            fileOut.println("Agent Email: " + agentEmailArray[i]);
+            fileOut.println("Agent Phone: " + agentPhoneArray[i]);
         }
         
         fileOut.close();
@@ -183,4 +381,5 @@ public class GroupProjectPart2 {
     }
 
     }
+
 }
